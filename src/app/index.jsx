@@ -21,6 +21,11 @@ import Module from './themes/nekomy/pages/module/module';
 import Activity from './themes/nekomy/pages/activity/activity';
 import NotFound from './themes/nekomy/pages/notFound/notFound';
 import Admin from './core/admin/admin';
+import ContentList from './pages/content/contentList';
+import ContentDetails from './pages/content/contentDetails';
+import QuizList from './pages/quiz/quizList';
+import QuizAttempt from './pages/quiz/quizAttempt';
+import QuizResult from './pages/quiz/quizResult';
 
 // Google Analytics initializacion
 ReactGA.initialize('UA-00000000-1', {
@@ -100,6 +105,11 @@ ReactDOM.render(
         <Route path="/admin/:type/:action" component={Admin} level={ADMIN_LEVEL} onEnter={requireAuth} />
         <Route path="/admin/:type/:action/:slug" component={Admin} level={ADMIN_LEVEL} onEnter={requireAuth} />
         <Route path="*" component={NotFound} />
+        <Route path="/contents" component={ContentList} />
+        <Route path="/contents/:id" component={ContentDetails} />
+        <Route path="/quiz" component={QuizList} />
+        <Route path="/quiz/:id" component={QuizAttempt} />
+        <Route path="/quiz/:id/result" component={QuizResult} />
       </Route>
     </Router>
   </Provider>, document.getElementById('react-root')

@@ -12,6 +12,7 @@ module.exports = {
     "no-param-reassign": 0,
     "no-loop-func": 0,
     "no-extend-native": 0,
+    "linebreak-style": "off"
 	},
 	"globals": {
 		"document": true,

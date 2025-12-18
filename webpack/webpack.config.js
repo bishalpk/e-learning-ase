@@ -63,11 +63,11 @@ module.exports = (options) => {
         }]
     },
     plugins: [
-      new WebpackVersionFilePlugin({
-        packageFile: Path.join(__dirname, '../package.json'),
-        template: Path.join(__dirname, '../version.ejs'),
-        outputFile: Path.join(__dirname, '../static/version.json')
-      }),
+      // new WebpackVersionFilePlugin({
+      //   packageFile: Path.join(__dirname, '../package.json'),
+      //   template: Path.join(__dirname, '../version.ejs'),
+      //   outputFile: Path.join(__dirname, '../static/version.json')
+      // }),
       new Webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(options.isProduction
@@ -88,11 +88,25 @@ module.exports = (options) => {
   if (options.isProduction) {
     webpackConfig.output.filename = 'scripts/[name].[chunkhash].js';
 
+    
+      webpackConfig.plugins.unshift(
+            new WebpackVersionFilePlugin({
+              packageFile: Path.join(__dirname, '../package.json'),
+              template: Path.join(__dirname, '../version.ejs'),
+              outputFile: Path.join(__dirname, '../static/version.json')
+          })
+      );
+
+
     webpackConfig.plugins.push(new HtmlWebpackPlugin({
       path: process.env.HOSTING_URL
         ? process.env.HOSTING_URL
         : '/',
       template: Path.resolve(__dirname, '../src/index.html')
+      
+        // path: process.env.HOSTING_URL ? process.env.HOSTING_URL : '/',
+        // template: Path.resolve(__dirname, '../src/index.html')
+
     }), new CopyWebpackPlugin([
       {
         from: 'static',

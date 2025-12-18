@@ -6,3 +6,4 @@
 .env
 bundle.js
 npm-debug.log
+/src/app/components/common/chat/chat.jsx
